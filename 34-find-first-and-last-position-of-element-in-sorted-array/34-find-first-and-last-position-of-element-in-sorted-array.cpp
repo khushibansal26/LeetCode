@@ -1,41 +1,41 @@
 class Solution {
 public:
     vector<int> searchRange(vector<int>& nums, int target) {
-        int n =nums.size();
-        // approach - > 2 binary searches
-        // one for left most occurance and one for right most
-        
-        int left=-1, right =-1;
-        int lo =0,hi= n-1;
-        int mid;
-        
-        //binary search for left most part
+        vector<int>ans;
+        int n = nums.size();
+        int lo,hi,mid;
+        lo=0,hi =n-1;
+        int ans1=-1,ans2=-1;
+        //to find first occurance 
         while(lo<=hi){
-            mid =(lo + hi) /2 ;
-            if(nums[mid]>target)
-                hi =mid-1;
-            else if(nums[mid]<target)
-                lo =mid+1;
-            else{
-                left = mid;
+        mid = lo + (hi-lo)/2;
+            if(nums[mid]==target){
+                ans1= mid;
                 hi = mid-1;
+                
             }
-        }
-        lo =0,hi =n-1;
-        
-      //binary search for right most part
-        while(lo<=hi){
-            mid =(lo + hi) /2 ;
-            if(nums[mid]>target)
+            else if(nums[mid]>target)
                 hi =mid-1;
-            else if(nums[mid]<target)
-                lo =mid+1;
-            else{
-                right = mid;
+            else
                 lo = mid+1;
-            }
         }
-        return {left,right};
-    
+        
+        // to find last coccurance 
+        lo=0,hi=n-1;
+        while(lo<=hi){
+             mid = lo + (hi-lo)/2;
+            if(nums[mid]==target){
+                ans2= mid;
+                lo= mid+1;
+                
+            }
+            else if(nums[mid]>target)
+                hi =mid-1;
+            else
+                lo = mid+1;
+        }
+        ans.push_back(ans1);
+        ans.push_back(ans2);
+        return ans;
     }
 };
