@@ -10,18 +10,18 @@
 class Solution {
 public:
     int guessNumber(int n) {
-        int lo=1,hi=n;
+      int lo=1,hi=n;
         int mid;
         int ans;
         while(lo<=hi){
-            mid = lo+ (hi-lo)/2;
+            mid =lo +(hi-lo)/2;
             ans=guess(mid);
             if(ans==0)
-               return mid;
+                return mid;
             else if(ans<0)
-                hi=mid-1;
+               hi=mid-1;
             else
-                lo=mid+1;
+               lo=mid+1;
         }
         return -1;
     }
