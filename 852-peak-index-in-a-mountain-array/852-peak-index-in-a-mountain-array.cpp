@@ -1,26 +1,21 @@
 class Solution {
 public:
-    int peakIndexInMountainArray(vector<int>& a) {
-        int n = a.size();
-        
-        // o(n) --> traverses whole array
-        int ans;
-        // for(int i=1;i<n-1;i++){
-        //     if(a[i]>a[i-1] && a[i]>a[i+1])
-        //         ans=i;
-        
-        //optimized
-       int lo=0,hi=n-1;
+    int peakIndexInMountainArray(vector<int>& nums) {
+        int n =nums.size();
+        int lo=0,hi=n-1;
         int mid;
-        while(lo<hi){
-            mid=lo+(hi-lo)/2;
-            if(a[mid]<a[mid+1])
-                lo= mid+1;
-           else{
-               hi=mid;
-           }
+        int ans;
+        while(lo<=hi){
+            mid =lo + (hi-lo)/2;
+            if(nums[mid]>nums[mid-1] && nums[mid]>nums[mid+1])
+                {ans=mid;
+                break;}
+            else if(nums[mid]<nums[mid+1])
+                lo=mid;
+            else
+                hi=mid;
+                
         }
-         
-        return lo;
+        return ans;
     }
 };
